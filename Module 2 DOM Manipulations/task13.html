@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Booking Appointment App </title>
+    <link rel="stylesheet" href="task13.css">
+  </head>
+  <body>
+    <header>
+      <h1>Book your Appointment</h1>
+    </header>
+    <div class="container">
+      <div class="main">
+        <form id = 'formId'>
+          <h3 > Add your Details </h3>
+          <div class="myDiv">
+          <div>
+            <label for="name"> Name </label>
+            <input type="text" id="name" placeholder="Your Name" required>
+          </div>
+          <div>
+            <label for="email"> Email </label>
+            <input type="email" id="email" placeholder="username@email.com">
+          </div>
+          <div>
+            <label for="ph"> Phone </label>
+            <input type="tel" id="ph" placeholder="+91" >
+          </div>
+          <div>
+            <label for="time"> Appointment Date and Time</label>
+            <input type="date" id="date" >
+            <input type="time" id="time" >
+          </div>
+          <div>
+            <label for="textArea"> Message </label><br>
+            <input type="textarea" id="textArea" placeholder="Add your Message" rows="5" cols="33"><br>
+          </div>
+          <input class ="btn" type="submit" id="submit" value="Submit">
+        </form>
+        <ul id="ul" class="list-group" >
+        </ul>
+      </div>
+    </div>
+    <script src="task13.js"></script>
+
+  </body>
+</html>
