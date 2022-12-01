@@ -9,20 +9,16 @@ function addToStorage(e){
     email : document.getElementById('email').value,
     phone : document.getElementById('ph').value,
     date : document.getElementById('date').value,
-    time : document.getElementById('time').value,
-    myMessage : document.getElementById('textArea').value,
+    time : document.getElementById('time').value
   }
   let key = myObj.email;
 
   const myObjData = JSON.stringify(myObj);
-  // console.log(myObj)
-  // console.log(myObjData)
   localStorage.setItem(key,myObjData)
   const dataObject = JSON.parse(myObjData)
-  // console.log(dataObject)
   addToItemList(dataObject)
 }
-
+// This will make sure to show the local 
 window.addEventListener("DOMContentLoaded", letItStay())
 
 function letItStay(){
@@ -41,13 +37,12 @@ function addToItemList (dataObject){
   document.getElementById('ph').value = "";
   document.getElementById('date').value = "";
   document.getElementById('time').value = "";
-  document.getElementById('textArea').value = "";
   if (localStorage.getItem(dataObject.email) !== null){
     removeItemFromList(dataObject.email)
   }
   const parentNode = document.getElementById('ul');
   // create li element using innerHTML
-  const childNode = `<li id=${dataObject.email}> ${dataObject.name} - ${dataObject.email} <button onclick=editUserDetails('${dataObject.name}','${dataObject.email}') type='submit' id = theEditBtn > Edit </button> <button onclick=deleteUser('${dataObject.email}') id = 'theDeleteBtn' > Delete </button></li>`
+  const childNode = `<li id=${dataObject.email}> ${dataObject.name} - ${dataObject.email} <button onclick=editUserDetails('${dataObject.name}','${dataObject.email}','${dataObject.phone}','${dataObject.date}','${dataObject.time}') type='submit' id = theEditBtn > Edit </button> <button onclick=deleteUser('${dataObject.email}') id = 'theDeleteBtn' > Delete </button></li>`
   parentNode.innerHTML = parentNode.innerHTML + childNode
   deleteBtn = document.getElementById('delete');
 }
@@ -63,18 +58,15 @@ function removeItemFromList(email){
 
 
 function deleteUser(email){
-  // console.log(email)
   localStorage.removeItem(email)
   removeItemFromList(email)
 }
 
-function editUserDetails(name,email){
-  console.log(1)
+function editUserDetails(name,email,phone,date,time){
   document.getElementById('name').value = name
   document.getElementById('email').value = email
-  // phone = document.getElementById('ph').value,
-  // date = document.getElementById('date').value,
-  // time = document.getElementById('time').value,
-  // myMessage = document.getElementById('textArea').value,
+  document.getElementById('ph').value = phone
+  document.getElementById('date').value = date
+  document.getElementById('time').value = time
   deleteUser(email)
 }
