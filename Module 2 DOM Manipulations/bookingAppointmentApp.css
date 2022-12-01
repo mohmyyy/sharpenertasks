@@ -1,0 +1,61 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+header{
+  background: #f4f4f4;
+  text-align: center;
+  padding: 4rem;
+  font-size: larger;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.container {
+  width: 350px;
+  top :50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  position: absolute;
+}
+#formId {
+  padding: 2rem;
+  background-color: #ccc;
+}
+#formId input[type='text'],input[type="tel"],input[type="email"],input[type="datetime-local"] {
+  width: 17pc;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#my-form label {
+  display: block;
+}
+
+#formId input[type='textarea'] {
+  width: 17pc;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  border: 0;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+.btn:hover {
+  background: #000;
+}
