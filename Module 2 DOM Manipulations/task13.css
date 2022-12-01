@@ -7,18 +7,15 @@
 header{
   background: #f4f4f4;
   text-align: center;
-  padding: 2rem;
+  padding: 1rem;
   font-size: larger;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+#secondHead{
+  padding: 4rem;
+  background-color: white;
 
-h3{
-  color: #fff;
-  background-color: #333;
-  margin-right: 49% ;
-  text-align: center;
 }
-
 body {
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   line-height: 1.5;
