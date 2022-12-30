@@ -1,10 +1,9 @@
 let form = document.getElementById('formId');
 form.addEventListener('submit',addToCloud);
-let parentNode = document.getElementById('list');
 
 // This will make sure to display the data from the cloud.
 window.addEventListener("DOMContentLoaded", ()=>{
-  axios.get("https://crudcrud.com/api/3f781e1ac83d46c49c18e67b8d9441df/appointmentData")
+  axios.get("https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData")
   .then((response) => { 
     for(let i=0;i<response.data.length;i++){
       addToItemList(response.data[i])
@@ -26,15 +25,24 @@ function addToCloud(e){
     message : document.getElementById('textArea').value
   }
   if(editedUserId === null){
-    axios.post("https://crudcrud.com/api/3f781e1ac83d46c49c18e67b8d9441df/appointmentData",myObj)
+    axios.post("https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData",myObj)
   .then((response) => {
-    addToItemList(response.data)})
-  .catch((err) => {parentNode.innerHTML = parentNode.innerHTML + `<li>Some went wrong</li>` })
+    addToItemList(response.data)
+    console.log(response.data)}
+    )
+  .catch((err) => {document.body.innerHTML = document.body.innerHTML + `<li>Some went wrong</li>` })
   }else{
-    axios.put(`https://crudcrud.com/api/3f781e1ac83d46c49c18e67b8d9441df/appointmentData/${editedUserId}`,myObj)
-    addToItemList({...myObj,_id:editedUserId})
-    editedUserId = null
+      axios.put(`https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData/${editedUserId}`,myObj)
+      .then((response) => addToItemList(response.data))
     }
+    // axios.put(`https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData/${editedUserId}`,myObj)
+    // .then((myObj)=>console.log(myObj))
+    // .then((myObj)=> console.log(myObj))
+    // .then((response) => {
+      // addToItemList(response.data)})
+    // .catch((err) => {console.error(err)})
+  // }
+  editedUserId = null
 }
 
 function addToItemList (dataObject){
@@ -44,11 +52,10 @@ function addToItemList (dataObject){
   document.getElementById('date').value = "";
   document.getElementById('time').value = "";
   document.getElementById('textArea').value = "";
-  // const parentNode = document.getElementById('list');
+  const parentNode = document.getElementById('list');
   
   // create li element using innerHTML
-  const childNode = `<li id=${dataObject.email}> ${dataObject.name}-${dataObject.email}
-  <button type='button' onclick="editUserDetails('${dataObject.name}','${dataObject.email}','${dataObject.phone}','${dataObject.date}','${dataObject.time}','${dataObject.message}','${dataObject._id}')" type='submit' id = theEditBtn > Edit </button>
+  const childNode = `<li id=${dataObject.email}> ${dataObject.name}-${dataObject.email}<button onclick="editUserDetails('${dataObject.name}','${dataObject.email}','${dataObject.phone}','${dataObject.date}','${dataObject.time}','${dataObject.message}','${dataObject._id}')" type='submit' id = theEditBtn > Edit </button>
   <button type='button' onclick=deleteUser('${dataObject.email}','${dataObject._id}') id = 'theDeleteBtn' > Delete </button>
   </li>`
   parentNode.innerHTML = parentNode.innerHTML + childNode
@@ -56,7 +63,7 @@ function addToItemList (dataObject){
 }
 
 function removeItemFromList(email){
-  // let parentNode = document.getElementById('list');
+  let parentNode = document.getElementById('list');
   let childNodeToBeDeleted= document.getElementById(email)
   if (childNodeToBeDeleted){
     parentNode.removeChild(childNodeToBeDeleted)
@@ -64,8 +71,8 @@ function removeItemFromList(email){
 }
 
 function deleteUser(email,id){
-  // alert(`https://crudcrud.com/api/3f781e1ac83d46c49c18e67b8d9441df/appointmentData/${id}`)
-  axios.delete(`https://crudcrud.com/api/3f781e1ac83d46c49c18e67b8d9441df/appointmentData/${id}`).then(()=>removeItemFromList(email))
+  // alert(`https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData/${id}`)
+  axios.delete(`https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData/${id}`).then(()=>removeItemFromList(email))
   .catch((err)=>console.error(err))
 }
 
@@ -77,6 +84,8 @@ function editUserDetails(name,email,phone,date,time,message,id){
   document.getElementById('time').value = time
   document.getElementById('textArea').value = message
   editedUserId = id
-  console.log(editedUserId)
-  removeItemFromList(email)
 }
+
+// axios.put(`https://crudcrud.com/api/15798e4edec940c38f5fd60392e2dae4/appointmentData/639f30bc430fc103e8909cda`,const obj={
+//   name: "Mohammed"
+// }).then((res)=>console.log(res))
