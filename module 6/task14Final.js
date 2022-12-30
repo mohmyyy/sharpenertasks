@@ -44,7 +44,6 @@ function addToItemList (dataObject){
   document.getElementById('date').value = "";
   document.getElementById('time').value = "";
   document.getElementById('textArea').value = "";
-  // const parentNode = document.getElementById('list');
   
   // create li element using innerHTML
   const childNode = `<li id=${dataObject.email}> ${dataObject.name}-${dataObject.email}
